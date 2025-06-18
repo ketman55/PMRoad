@@ -1,61 +1,71 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+このファイルは、Claude Code (claude.ai/code) がこのリポジトリで作業する際のガイダンスを提供します。
 
-## Repository Status
+## 言語とドキュメントポリシー
 
-This is a fresh repository with no source code implemented yet. The project appears to be named "PMRoad" based on the directory structure.
+**重要**: このプロジェクトでは、すべてのドキュメント、コメント、プルリクエスト、コミットメッセージを日本語で作成してください。
 
-## Development Setup
+- プルリクエストのタイトルと説明は日本語で記述する
+- コミットメッセージは日本語で記述する
+- ドキュメントファイル（README、CLAUDE.md等）は日本語で記述する
+- コード内のコメントは日本語で記述する
 
-Since this is a new repository, the development environment and build system have not been established yet. Common setup tasks will likely include:
+## リポジトリの状況
 
-- Initializing a package manager (npm, yarn, pip, cargo, etc.)
-- Setting up a build system and development scripts
-- Configuring linting and formatting tools
-- Establishing testing frameworks
+これは新しいリポジトリで、まだソースコードは実装されていません。ディレクトリ構造から「PMRoad」という名前のプロジェクトのようです。
 
-### Environment Configuration
+## 開発環境のセットアップ
 
-This repository uses environment variables for sensitive configuration:
+これは新しいリポジトリのため、開発環境とビルドシステムはまだ確立されていません。一般的なセットアップタスクには以下が含まれる可能性があります：
 
-1. Copy `.env.example` to `.env`:
+- パッケージマネージャーの初期化（npm, yarn, pip, cargo等）
+- ビルドシステムと開発スクリプトのセットアップ
+- リントとフォーマットツールの設定
+- テストフレームワークの確立
+
+### 環境設定
+
+このリポジトリは機密設定に環境変数を使用します：
+
+1. `.env.example` を `.env` にコピー：
    ```bash
    cp .env.example .env
    ```
 
-2. Edit `.env` with your actual credentials:
-   - `GITHUB_TOKEN`: Your GitHub personal access token
-   - `GITHUB_USERNAME`: Your GitHub username  
-   - `GITHUB_EMAIL`: Your GitHub email address
+2. 実際の認証情報で `.env` を編集：
+   - `GITHUB_TOKEN`: あなたのGitHubパーソナルアクセストークン
+   - `GITHUB_USERNAME`: あなたのGitHubユーザー名
+   - `GITHUB_EMAIL`: あなたのGitHubメールアドレス
 
-3. The `.env` file is automatically ignored by git for security.
+3. `.env` ファイルはセキュリティのためgitに自動的に無視されます。
 
-## Project Structure
+## プロジェクト構造
 
-The project structure has not been established yet. Once source code is added, this section should be updated with:
+プロジェクト構造はまだ確立されていません。ソースコードが追加されたら、このセクションを以下の内容で更新してください：
 
-- Main application entry points
-- Directory organization
-- Key architectural patterns
-- Important configuration files
+- メインアプリケーションのエントリーポイント
+- ディレクトリ構成
+- 主要なアーキテクチャパターン
+- 重要な設定ファイル
 
-## Creating Pull Requests
+## プルリクエストの作成
 
-To create pull requests, ensure environment is configured:
+プルリクエストを作成するには、環境が設定されていることを確認してください：
 
-1. Set up `.env` file with GitHub credentials (see Environment Configuration above)
-2. Use environment variables for authentication:
+1. GitHub認証情報で `.env` ファイルをセットアップ（上記の環境設定を参照）
+2. 認証に環境変数を使用：
    ```bash
    export GITHUB_TOKEN=$(grep GITHUB_TOKEN .env | cut -d '=' -f2)
    ```
-3. Create and push feature branches for pull requests
+3. プルリクエスト用の機能ブランチを作成してプッシュ
 
-## Notes for Claude Code
+## Claude Code向けの注意事項
 
-- This repository is in its initial state
-- No specific development commands or build processes have been configured
-- Architecture and patterns should be established as the codebase grows
-- Update this file as the project structure becomes more defined
-- Always reference `.env.example` for required environment variables
-- Never commit actual credentials to git repository
+- このリポジトリは初期状態です
+- 特定の開発コマンドやビルドプロセスはまだ設定されていません
+- アーキテクチャとパターンはコードベースの成長に応じて確立してください
+- プロジェクト構造がより明確になったら、このファイルを更新してください
+- 必要な環境変数については常に `.env.example` を参照してください
+- 実際の認証情報をgitリポジトリにコミットしないでください
+- **すべてのドキュメント、PR、コミットメッセージは日本語で記述してください**
