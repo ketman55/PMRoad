@@ -51,12 +51,43 @@
 
 ## プロジェクト構造
 
-プロジェクト構造はまだ確立されていません。ソースコードが追加されたら、このセクションを以下の内容で更新してください：
+このリポジトリは、PMBOKに基づいたプロジェクト管理ドキュメントの標準テンプレートを提供します：
 
-- メインアプリケーションのエントリーポイント
-- ディレクトリ構成
-- 主要なアーキテクチャパターン
-- 重要な設定ファイル
+### ディレクトリ構成
+
+```
+PMRoad/
+├── 01_要件定義/              # 要件分析・定義フェーズ
+│   ├── project-charter.md                    # プロジェクト憲章
+│   ├── requirements-register.md              # 要求事項管理台帳
+│   ├── scope-statement.md                    # スコープ定義書
+│   ├── wbs.md                               # 作業分解構造
+│   ├── functional-requirements.md           # 機能要件定義書
+│   ├── non-functional-requirements.md       # 非機能要件定義書
+│   └── requirements-traceability-matrix.md  # 要件トレーサビリティマトリックス
+├── 02_設計書/                # システム設計フェーズ  
+│   ├── system-architecture.md               # システム全体アーキテクチャ設計書
+│   ├── system-design.md                     # システム方式設計書
+│   ├── database-design.md                   # データベース設計書
+│   ├── interface-design.md                  # インターフェース設計書
+│   ├── security-design.md                   # セキュリティ設計書
+│   └── performance-design.md                # 性能設計書
+├── 03_開発ドキュメント/       # 開発実装フェーズ
+│   └── README.md                            # 開発ドキュメント概要
+├── 04_運用ドキュメント/       # 運用保守フェーズ
+│   └── (今後作成予定)
+├── project-document-rule.md  # ドキュメント作成統一ルール
+├── .env.example              # 環境変数テンプレート
+├── .gitignore               # Git除外設定
+└── CLAUDE.md                # Claude Code向けガイダンス
+```
+
+### 各フェーズの概要
+
+- **01_要件定義**: PMBOKのスコープ管理、要求事項管理に基づく要件定義関連文書
+- **02_設計書**: PMBOKの品質管理に基づくシステム設計関連文書
+- **03_開発ドキュメント**: PMBOKの品質管理に基づく開発実装関連文書
+- **04_運用ドキュメント**: PMBOKのリスク管理、調達管理に基づく運用保守関連文書
 
 ## プルリクエストの作成
 
