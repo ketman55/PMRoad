@@ -37,8 +37,6 @@
    - `GITHUB_EMAIL`: あなたのGitHubメールアドレス
    - `PLAYWRIGHT_MCP_URL`: Playwright MCPサーバーのURL（デフォルト: http://localhost:5001/sse）
    - `PLAYWRIGHT_MCP_ENABLED`: Playwright MCP使用の有効/無効（デフォルト: true）
-   - `PLAYWRIGHT_MCP_URL`: Playwright MCPサーバーのURL（デフォルト: http://localhost:5001/sse）
-   - `PLAYWRIGHT_MCP_ENABLED`: Playwright MCP使用の有効/無効（デフォルト: true）
 
 3. `.env` ファイルはセキュリティのためgitに自動的に無視されます。
 
@@ -102,127 +100,15 @@ PMRoad/
 
 ## テスト環境とPlaywright MCP
 
-### E2Eテスト実行時の注意事項
+詳細なテスト実行手順とエビデンス収集ルールについては、[05_テスト/test-strategy.md](./05_テスト/test-strategy.md) を参照してください。
+
+### 基本設定
 
 **重要**: E2Eテスト実行時は必ずPlaywright MCPを使用してください。
 
-1. **Playwright MCPサーバー起動**:
-   ```bash
-   # MCPサーバーを起動（別ターミナルで実行）
-   playwright-mcp-server --port 5001
-   ```
-
-2. **設定確認**:
-   - `.env`ファイルにPlaywright MCP設定が正しく設定されていることを確認
-   - `PLAYWRIGHT_MCP_ENABLED=true`に設定されていることを確認
-
-3. **テスト実行**:
-   - E2Eテストは05_テスト/内のテスト戦略書に従って実行
-   - ブラウザ自動化はPlaywright MCPを通じて実行
-   - テスト結果は自動的にスクリーンショット・動画で記録
-
-### Playwright MCP 利用ルール
-
-**必須**: すべてのE2Eテスト実行時は以下のルールを遵守してください。
-
-#### テスト実行エビデンス収集
-
-1. **Given-When-Then パターンの証拠収集**:
-   - **Given状態**: テスト開始時点の画面状態をキャプチャ
-   - **When操作エビデンス**: 操作実行前の準備状態（ホバー等）をキャプチャ
-   - **Then状態**: 操作完了後の最終状態をキャプチャ
-
-2. **操作証明の必須要件**:
-   - When操作を直接実行したことの証拠を必ず残す
-   - リンク直接アクセス等の「ずる」ではないことを証明する
-   - ホバー操作やクリック準備状態を画面キャプチャで記録
-
-3. **スクリーンショット命名規則**:
-   ```
-   {テスト名}-step{番号}-{状態}.png
-   例: faq-test-step1-given.png
-       faq-test-step2-hover.png  
-       faq-test-step3-then.png
-   ```
-
-#### テスト結果保存構造
-
-```
-05_テスト/テストシナリオ/{テスト名}/
-├── {テスト名}.md              # テストシナリオ定義
-└── テスト結果/
-    ├── step1-given.png        # Given状態
-    ├── step2-{操作}.png       # When操作エビデンス
-    └── step3-then.png         # Then状態
-```
-
-#### 品質保証要件
-
-- **操作の透明性**: すべてのブラウザ操作が適切に実行されたことを証明
-- **再現可能性**: スクリーンショットから操作手順が再現可能であること
-- **トレーサビリティ**: テストシナリオと実行結果の紐付けが明確であること
-
-## テスト環境とPlaywright MCP
-
-### E2Eテスト実行時の注意事項
-
-**重要**: E2Eテスト実行時は必ずPlaywright MCPを使用してください。
-
-1. **Playwright MCPサーバー起動**:
-   ```bash
-   # MCPサーバーを起動（別ターミナルで実行）
-   playwright-mcp-server --port 5001
-   ```
-
-2. **設定確認**:
-   - `.env`ファイルにPlaywright MCP設定が正しく設定されていることを確認
-   - `PLAYWRIGHT_MCP_ENABLED=true`に設定されていることを確認
-
-3. **テスト実行**:
-   - E2Eテストは05_テスト/内のテスト戦略書に従って実行
-   - ブラウザ自動化はPlaywright MCPを通じて実行
-   - テスト結果は自動的にスクリーンショット・動画で記録
-
-### Playwright MCP 利用ルール
-
-**必須**: すべてのE2Eテスト実行時は以下のルールを遵守してください。
-
-#### テスト実行エビデンス収集
-
-1. **Given-When-Then パターンの証拠収集**:
-   - **Given状態**: テスト開始時点の画面状態をキャプチャ
-   - **When操作エビデンス**: 操作実行前の準備状態（ホバー等）をキャプチャ
-   - **Then状態**: 操作完了後の最終状態をキャプチャ
-
-2. **操作証明の必須要件**:
-   - When操作を直接実行したことの証拠を必ず残す
-   - リンク直接アクセス等の「ずる」ではないことを証明する
-   - ホバー操作やクリック準備状態を画面キャプチャで記録
-
-3. **スクリーンショット命名規則**:
-   ```
-   {テスト名}-step{番号}-{状態}.png
-   例: faq-test-step1-given.png
-       faq-test-step2-hover.png  
-       faq-test-step3-then.png
-   ```
-
-#### テスト結果保存構造
-
-```
-05_テスト/テストシナリオ/{テスト名}/
-├── {テスト名}.md              # テストシナリオ定義
-└── テスト結果/
-    ├── step1-given.png        # Given状態
-    ├── step2-{操作}.png       # When操作エビデンス
-    └── step3-then.png         # Then状態
-```
-
-#### 品質保証要件
-
-- **操作の透明性**: すべてのブラウザ操作が適切に実行されたことを証明
-- **再現可能性**: スクリーンショットから操作手順が再現可能であること
-- **トレーサビリティ**: テストシナリオと実行結果の紐付けが明確であること
+- サーバー起動: `playwright-mcp-server --port 5001`
+- 設定確認: `.env`ファイルで`PLAYWRIGHT_MCP_ENABLED=true`に設定
+- エビデンス収集: Given-When-Thenパターンでスクリーンショット取得
 
 ## Claude Code向けの注意事項
 
